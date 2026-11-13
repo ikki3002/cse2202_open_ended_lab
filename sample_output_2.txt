@@ -1,0 +1,276 @@
+==============================================================================
+PART A : DETAILED REPORT ON A SMALL NETWORK  (ALPHA = 3)
+==============================================================================
+Network: 8 intersections, 14 roads
+  Road  0: 1 -- 6  (distance 15)
+  Road  1: 6 -- 7  (distance 16)
+  Road  2: 7 -- 0  (distance 12)
+  Road  3: 0 -- 5  (distance 12)
+  Road  4: 5 -- 4  (distance 4)
+  Road  5: 4 -- 3  (distance 9)
+  Road  6: 3 -- 2  (distance 4)
+  Road  7: 2 -- 1  (distance 2)
+  Road  8: 0 -- 3  (distance 18)
+  Road  9: 2 -- 4  (distance 3)
+  Road 10: 7 -- 5  (distance 17)
+  Road 11: 7 -- 1  (distance 1)
+  Road 12: 1 -- 4  (distance 7)
+  Road 13: 0 -- 2  (distance 11)
+
+##############################################################################
+TIME STEP 1   requests:  (n=6, 4->3)  (n=15, 0->2)  (n=10, 2->1)  (n=11, 0->6)
+##############################################################################
+
+[Shortest Path]  assigned paths:
+  Request (6 vehicles, 4 -> 3)
+       6 vehicles : 4 -> 2 -> 3   (length 7)
+  Request (15 vehicles, 0 -> 2)
+      15 vehicles : 0 -> 2   (length 11)
+  Request (10 vehicles, 2 -> 1)
+      10 vehicles : 2 -> 1   (length 2)
+  Request (11 vehicles, 0 -> 6)
+      11 vehicles : 0 -> 7 -> 6   (length 28)
+
+[Greedy Load-Bal]  assigned paths:
+  Request (6 vehicles, 4 -> 3)
+       5 vehicles : 4 -> 3   (length 9)
+       1 vehicles : 4 -> 2 -> 3   (length 7)
+  Request (15 vehicles, 0 -> 2)
+      11 vehicles : 0 -> 2   (length 11)
+       4 vehicles : 0 -> 3 -> 2   (length 22)
+  Request (10 vehicles, 2 -> 1)
+       8 vehicles : 2 -> 1   (length 2)
+       2 vehicles : 2 -> 4 -> 1   (length 10)
+  Request (11 vehicles, 0 -> 6)
+       7 vehicles : 0 -> 7 -> 6   (length 28)
+       2 vehicles : 0 -> 5 -> 4 -> 1 -> 6   (length 38)
+       2 vehicles : 0 -> 5 -> 7 -> 1 -> 6   (length 45)
+
+[Proposed Hybrid]  assigned paths:
+  Request (6 vehicles, 4 -> 3)
+       2 vehicles : 4 -> 2 -> 3   (length 7)
+       4 vehicles : 4 -> 3   (length 9)
+  Request (15 vehicles, 0 -> 2)
+      11 vehicles : 0 -> 2   (length 11)
+       3 vehicles : 0 -> 3 -> 2   (length 22)
+       1 vehicles : 0 -> 5 -> 4 -> 2   (length 19)
+  Request (10 vehicles, 2 -> 1)
+       9 vehicles : 2 -> 1   (length 2)
+       1 vehicles : 2 -> 4 -> 1   (length 10)
+  Request (11 vehicles, 0 -> 6)
+       6 vehicles : 0 -> 7 -> 6   (length 28)
+       2 vehicles : 0 -> 7 -> 1 -> 6   (length 28)
+       2 vehicles : 0 -> 5 -> 4 -> 1 -> 6   (length 38)
+       1 vehicles : 0 -> 5 -> 7 -> 6   (length 45)
+
+Road-wise traffic load (vehicles on each road):
+  Road  (u--v)    SP  Greedy  Proposed
+     0  (1--6)       0       4         4
+     1  (6--7)      11       7         7
+     2  (7--0)      11       7         8
+     3  (0--5)       0       4         4
+     4  (5--4)       0       2         3
+     5  (4--3)       0       5         4
+     6  (3--2)       6       5         5
+     7  (2--1)      10       8         9
+     8  (0--3)       0       4         3
+     9  (2--4)       6       3         4
+    10  (7--5)       0       2         1
+    11  (7--1)       0       2         2
+    12  (1--4)       0       4         3
+    13  (0--2)      15      11        11
+
+Metrics for time step 1:
+Algorithm          MaxLoad   AvgLoad   Variance   TotalDist
+Shortest Path           15      4.21      27.88         535
+Greedy Load-Bal         11      4.86       6.27         659
+Proposed Hybrid         11      4.86       7.55         629
+
+##############################################################################
+TIME STEP 2   requests:  (n=10, 1->3)  (n=10, 7->4)  (n=11, 0->6)  (n=9, 5->1)
+##############################################################################
+
+[Shortest Path]  assigned paths:
+  Request (10 vehicles, 1 -> 3)
+      10 vehicles : 1 -> 2 -> 3   (length 6)
+  Request (10 vehicles, 7 -> 4)
+      10 vehicles : 7 -> 1 -> 2 -> 4   (length 6)
+  Request (11 vehicles, 0 -> 6)
+      11 vehicles : 0 -> 7 -> 6   (length 28)
+  Request (9 vehicles, 5 -> 1)
+       9 vehicles : 5 -> 4 -> 2 -> 1   (length 9)
+
+[Greedy Load-Bal]  assigned paths:
+  Request (10 vehicles, 1 -> 3)
+       6 vehicles : 1 -> 2 -> 3   (length 6)
+       4 vehicles : 1 -> 4 -> 3   (length 16)
+  Request (10 vehicles, 7 -> 4)
+       3 vehicles : 7 -> 1 -> 4   (length 8)
+       4 vehicles : 7 -> 5 -> 4   (length 21)
+       2 vehicles : 7 -> 0 -> 2 -> 4   (length 26)
+       1 vehicles : 7 -> 0 -> 3 -> 4   (length 39)
+  Request (11 vehicles, 0 -> 6)
+       8 vehicles : 0 -> 7 -> 6   (length 28)
+       3 vehicles : 0 -> 2 -> 1 -> 6   (length 28)
+  Request (9 vehicles, 5 -> 1)
+       3 vehicles : 5 -> 4 -> 1   (length 11)
+       5 vehicles : 5 -> 7 -> 1   (length 18)
+       1 vehicles : 5 -> 0 -> 2 -> 1   (length 25)
+
+[Proposed Hybrid]  assigned paths:
+  Request (10 vehicles, 1 -> 3)
+       7 vehicles : 1 -> 2 -> 3   (length 6)
+       2 vehicles : 1 -> 4 -> 3   (length 16)
+       1 vehicles : 1 -> 2 -> 4 -> 3   (length 14)
+  Request (10 vehicles, 7 -> 4)
+       5 vehicles : 7 -> 1 -> 4   (length 8)
+       4 vehicles : 7 -> 5 -> 4   (length 21)
+       1 vehicles : 7 -> 0 -> 2 -> 4   (length 26)
+  Request (11 vehicles, 0 -> 6)
+       8 vehicles : 0 -> 7 -> 6   (length 28)
+       3 vehicles : 0 -> 2 -> 1 -> 6   (length 28)
+  Request (9 vehicles, 5 -> 1)
+       1 vehicles : 5 -> 4 -> 2 -> 1   (length 9)
+       4 vehicles : 5 -> 4 -> 1   (length 11)
+       4 vehicles : 5 -> 7 -> 1   (length 18)
+
+Road-wise traffic load (vehicles on each road):
+  Road  (u--v)    SP  Greedy  Proposed
+     0  (1--6)       0       3         3
+     1  (6--7)      11       8         8
+     2  (7--0)      11      11         9
+     3  (0--5)       0       1         0
+     4  (5--4)       9       7         9
+     5  (4--3)       0       5         3
+     6  (3--2)      10       6         7
+     7  (2--1)      29      10        12
+     8  (0--3)       0       1         0
+     9  (2--4)      19       2         3
+    10  (7--5)       0       9         8
+    11  (7--1)      10       8         9
+    12  (1--4)       0      10        11
+    13  (0--2)       0       6         4
+
+Metrics for time step 2:
+Algorithm          MaxLoad   AvgLoad   Variance   TotalDist
+Shortest Path           29      7.07      73.21         509
+Greedy Load-Bal         11      6.21      10.74         755
+Proposed Hybrid         12      6.14      14.27         671
+
+##############################################################################
+TIME STEP 3   requests:  (n=15, 0->7)  (n=13, 7->4)  (n=5, 3->2)  (n=12, 0->1)
+##############################################################################
+
+[Shortest Path]  assigned paths:
+  Request (15 vehicles, 0 -> 7)
+      15 vehicles : 0 -> 7   (length 12)
+  Request (13 vehicles, 7 -> 4)
+      13 vehicles : 7 -> 1 -> 2 -> 4   (length 6)
+  Request (5 vehicles, 3 -> 2)
+       5 vehicles : 3 -> 2   (length 4)
+  Request (12 vehicles, 0 -> 1)
+      12 vehicles : 0 -> 2 -> 1   (length 13)
+
+[Greedy Load-Bal]  assigned paths:
+  Request (15 vehicles, 0 -> 7)
+      13 vehicles : 0 -> 7   (length 12)
+       2 vehicles : 0 -> 5 -> 7   (length 29)
+  Request (13 vehicles, 7 -> 4)
+       6 vehicles : 7 -> 1 -> 4   (length 8)
+       6 vehicles : 7 -> 5 -> 4   (length 21)
+       1 vehicles : 7 -> 6 -> 1 -> 4   (length 38)
+  Request (5 vehicles, 3 -> 2)
+       4 vehicles : 3 -> 2   (length 4)
+       1 vehicles : 3 -> 4 -> 2   (length 12)
+  Request (12 vehicles, 0 -> 1)
+       8 vehicles : 0 -> 2 -> 1   (length 13)
+       1 vehicles : 0 -> 5 -> 7 -> 6 -> 1   (length 60)
+       3 vehicles : 0 -> 3 -> 4 -> 1   (length 34)
+
+[Proposed Hybrid]  assigned paths:
+  Request (15 vehicles, 0 -> 7)
+      14 vehicles : 0 -> 7   (length 12)
+       1 vehicles : 0 -> 5 -> 7   (length 29)
+  Request (13 vehicles, 7 -> 4)
+       1 vehicles : 7 -> 1 -> 2 -> 4   (length 6)
+       7 vehicles : 7 -> 1 -> 4   (length 8)
+       5 vehicles : 7 -> 5 -> 4   (length 21)
+  Request (5 vehicles, 3 -> 2)
+       4 vehicles : 3 -> 2   (length 4)
+       1 vehicles : 3 -> 4 -> 2   (length 12)
+  Request (12 vehicles, 0 -> 1)
+       9 vehicles : 0 -> 2 -> 1   (length 13)
+       1 vehicles : 0 -> 5 -> 4 -> 1   (length 23)
+       2 vehicles : 0 -> 3 -> 4 -> 1   (length 34)
+
+Road-wise traffic load (vehicles on each road):
+  Road  (u--v)    SP  Greedy  Proposed
+     0  (1--6)       0       2         0
+     1  (6--7)       0       2         0
+     2  (7--0)      15      13        14
+     3  (0--5)       0       3         2
+     4  (5--4)       0       6         6
+     5  (4--3)       0       4         3
+     6  (3--2)       5       4         4
+     7  (2--1)      25       8        10
+     8  (0--3)       0       3         2
+     9  (2--4)      13       1         2
+    10  (7--5)       0       9         6
+    11  (7--1)      13       6         8
+    12  (1--4)       0      10        10
+    13  (0--2)      12       8         9
+
+Metrics for time step 3:
+Algorithm          MaxLoad   AvgLoad   Variance   TotalDist
+Shortest Path           25      5.93      61.78         434
+Greedy Load-Bal         13      5.64      11.66         720
+Proposed Hybrid         14      5.43      16.96         600
+
+==============================================================================
+PART B : COMPARISON ON LARGER NETWORKS (5 time steps each)
+  MaxLoad  = largest road load in a time step, averaged over the 5 steps
+  AvgLoad, Variance = averaged over the 5 steps
+  TotalDist = sum over all 5 steps, Time = total running time
+==============================================================================
+
+Network: 50 nodes, 100 roads
+Algorithm          MaxLoad   AvgLoad   Variance   TotalDist    Time(ms)
+Shortest Path           72     12.45     259.72       45044        0.47
+Greedy Load-Bal         29     11.96      32.24       63033        5.84
+Proposed Hybrid         31     11.84      38.15       59348        5.38
+
+Network: 200 nodes, 400 roads
+Algorithm          MaxLoad   AvgLoad   Variance   TotalDist    Time(ms)
+Shortest Path           72      4.85      92.12       62646        2.29
+Greedy Load-Bal         17      4.74       7.56      100441       37.41
+Proposed Hybrid         19      4.57      11.58       86666       34.09
+
+Network: 1000 nodes, 2000 roads
+Algorithm          MaxLoad   AvgLoad   Variance   TotalDist    Time(ms)
+Shortest Path           41      1.39      21.93       85855       12.49
+Greedy Load-Bal         15      1.42       2.23      149737      230.92
+Proposed Hybrid         16      1.37       3.25      118486      260.48
+
+Network: 5000 nodes, 10000 roads
+Algorithm          MaxLoad   AvgLoad   Variance   TotalDist    Time(ms)
+Shortest Path           37      0.32       4.73      101499       95.61
+Greedy Load-Bal         10      0.33       0.54      173342     1235.64
+Proposed Hybrid         10      0.35       0.72      133291     1684.28
+
+==============================================================================
+PART C : TRADE-OFF (200 nodes, 5 time steps; MaxLoad & Variance averaged,
+         TotalDist summed over the 5 steps)
+==============================================================================
+Algorithm          MaxLoad   Variance   TotalDist
+Shortest Path        121.8     358.27      133205
+Hybrid ALPHA=0       121.8     358.27      133205
+Hybrid ALPHA=1        38.2      49.48      173049
+Hybrid ALPHA=2        34.2      36.02      185797
+Hybrid ALPHA=3        33.4      31.28      192176
+Hybrid ALPHA=5        32.2      27.49      198450
+Hybrid ALPHA=10       31.6      24.60      204595
+Hybrid ALPHA=20       31.6      23.17      208392
+Hybrid ALPHA=50       31.0      22.47      211523
+Greedy Load-Bal       31.2      24.76      208098
+(ALPHA = 0 is exactly Shortest Path. Bigger ALPHA -> lower max load and
+ variance, but cars take longer detours, so total distance grows.)
